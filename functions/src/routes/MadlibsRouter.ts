@@ -20,4 +20,19 @@ madlibsRouter.get("/", async (req, res) => {
   }
 });
 
+madlibsRouter.post("/", async (req, res) => {
+  const newStory: Madlibs = req.body;
+  try {
+    const client = await getClient();
+    const cursor = client
+      .db()
+      .collection<Madlibs>("madlibs")
+      .insertOne(newStory);
+    const results = await cursor;
+    res.json(results);
+  } catch (err) {
+    errorResponse(err, res);
+  }
+});
+
 export default madlibsRouter;
