@@ -20,7 +20,7 @@ madlibsRouter.get("/", async (req, res) => {
   }
 });
 
-madlibsRouter.post("/", async (req, res) => {
+madlibsRouter.post("/stories", async (req, res) => {
   const newStory: Madlibs = req.body;
   try {
     const client = await getClient();
